@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/abyabrkal/library/issues"
   },
-  "homepage": "https://github.com/abyabrkal/library#readme"
+  "homepage": "https://github.com/abyabrkal/library#readme",
+  "dependencies": {
+    "express": "4.15.2"
+  }
 }
