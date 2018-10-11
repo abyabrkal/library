@@ -24,7 +24,9 @@
   "homepage": "https://github.com/abyabrkal/library#readme",
   "dependencies": {
     "chalk": "^2.4.1",
+    "debug": "2.6.6",
     "express": "4.15.2",
+    "morgan": "^1.8.1",
     "nodemon": "^1.18.4"
   }
 }
