@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/abyabrkal/library#readme",
   "dependencies": {
-    "express": "4.15.2"
+    "chalk": "^2.4.1",
+    "express": "4.15.2",
+    "nodemon": "^1.18.4"
   }
 }
