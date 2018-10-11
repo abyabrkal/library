@@ -1,2 +1,4 @@
 # library
-A Book Library built with Node and Good Reads API
+A Book Library built with Node and GoodReads API
+
+
