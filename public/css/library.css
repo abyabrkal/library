@@ -1,6 +1,24 @@
+/*************** BS4 Album Template CSS *********************/
 :root {
   --jumbotron-padding-y: 3rem;
 }
+/*************** ********************** *********************/
+
+
+.nav-item {
+  margin-left: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+/*************** BS4 Album Template CSS *********************/
 
 .jumbotron {
   padding-top: var(--jumbotron-padding-y);
@@ -35,3 +53,5 @@ footer {
 footer p {
   margin-bottom: .25rem;
 }
+
+/*************************************************************/
