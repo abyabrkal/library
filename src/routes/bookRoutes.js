@@ -1,48 +1,10 @@
 const express = require('express');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectID } = require('mongodb');
 const debug = require('debug')('app:bookRoutes');
+
 const bookRouter = express.Router();
 
 function router(nav) {
-
-    const books = [
-        {
-            title: 'War and Peace',
-            genre: 'Historical Fiction',
-            author: 'Lev Nikolayevich Tolstoy',
-            read: false,
-        },
-        {
-            title: 'Les Miserables',
-            genre: 'Historical Fiction',
-            author: 'Victor Hugo',
-            read: false,
-        },
-        {
-            title: 'Da Vinci Code',
-            genre: 'Suspense Thriller',
-            author: 'Dan Brown',
-            read: false,
-        },
-        {
-            title: 'Angels and Demons',
-            genre: 'Suspense Thriller',
-            author: 'Dan Brown',
-            read: false,
-        },
-        {
-            title: 'The Dark World',
-            genre: 'Fantasy',
-            author: 'Henry Kuttner',
-            read: false,
-        },
-        {
-            title: 'A Journey into the Centre of the Earth',
-            genre: 'Suspense Fiction',
-            author: 'Jules Verne',
-            read: false,
-        },
-    ];
 
     bookRouter.route('/')
         .get((req, res) => {
@@ -65,7 +27,7 @@ function router(nav) {
                         'bookListView',
                         {
                             nav,
-                            title: 'Books',
+                            title: 'Library',
                             books,
                         }
                     );
@@ -81,15 +43,39 @@ function router(nav) {
         .get((req, res) => {
             // const id = req.params.id;
             const { id } = req.params;
+            const url = 'mongodb://localhost:27017';
+            const dbName = 'libraryApp';
 
-            res.render(
-                'bookView',
-                {
-                    nav,
-                    title: 'Books',
-                    book: books[id],
+            (async function mongo(){
+                let client;
+                try {
+                    client = await MongoClient.connect(url);
+                    debug('Connected to server: success');
+
+                    const db = client.db(dbName);
+
+                    const col = await db.collection('books');
+
+                    //We cant use _id:id, as _id is not a string id. Its a Mongo ObjectID.
+                    //So, import ObjectID and create a new ObjectID for id
+                    const book = await col.findOne({ _id: new ObjectID(id) })
+
+                    res.render(
+                        'bookView',
+                        {
+                            nav,
+                            title: 'Library',
+                            book
+                        }
+                    );
+
+
+                } catch(err) {
+                    debug(err.stack);
                 }
-            );
+            }());
+
+            
         });
 
     return bookRouter;
