@@ -70,7 +70,7 @@ function router(nav) {
 
 
     bookRouter.route('/:id')
-        .get((req, res) => {
+        .all((req, res, next) => {
             (async function query(){
                 // const id = req.params.id;
                 const { id } = req.params;
@@ -79,21 +79,21 @@ function router(nav) {
                 const { recordset } = await request
                                         .input('id', sql.Int, id)
                                         .query('select * from books where id = @id');
-                //debug(result);
-                res.render(
-                    'bookView',
-                    {
-                        nav,
-                        title: 'Books' ,
-                        book: recordset[0],
-                    }
-                );
+                //[req.book] = recordset;
+                req.book = recordset[0];
+                next();
             }());
-
-
-
-            
-
+        })
+        .get((req, res) => {
+            //debug(result);
+            res.render(
+                'bookView',
+                {
+                    nav,
+                    title: 'Books' ,
+                    book: req.book,
+                }
+            );
         });
 
     return bookRouter;
