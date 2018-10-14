@@ -1,5 +1,7 @@
 const express = require('express');
 const bookRouter = express.Router();
+const sql = require('mssql');
+//const debug = require('debug')('app:bookRoutes');
 
 function router(nav) {
     
@@ -44,30 +46,54 @@ function router(nav) {
     
     bookRouter.route('/')
         .get((req, res) => {
-        res.render(
-            'bookListView',
-            { 
-            nav,
-            title: 'Books' ,
-            books,
-            }
-        );
+            (async function query() {
+                const request = new sql.Request();
+
+                const { recordset } = await request.query('select * from books');
+                
+                //debug(result);
+                res.render(
+                    'bookListView',
+                    { 
+                        nav,
+                        title: 'Books' ,
+                        books: recordset,
+                    }
+                )
+            }())
+
+
+
+
+        
         });
 
 
     bookRouter.route('/:id')
         .get((req, res) => {
-            // const id = req.params.id;
-            const { id } = req.params;
+            (async function query(){
+                // const id = req.params.id;
+                const { id } = req.params;
 
-            res.render(
-                'bookView',
-                {
-                    nav,
-                    title: 'Books' ,
-                    book: books[id],
-                }
-            );
+                const request = new sql.Request();
+                const { recordset } = await request
+                                        .input('id', sql.Int, id)
+                                        .query('select * from books where id = @id');
+                //debug(result);
+                res.render(
+                    'bookView',
+                    {
+                        nav,
+                        title: 'Books' ,
+                        book: recordset[0],
+                    }
+                );
+            }());
+
+
+
+            
+
         });
 
     return bookRouter;
