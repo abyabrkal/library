@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="188px" height="258px" viewBox="0 0 188 258" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Book</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-70.6%" y="-428.6%" width="241.2%" height="957.1%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="20" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="LOGO" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Book">
+            <g id="Group-Copy">
+                <path d="M0.5,0.755233307 L0.5,127.525655 L86.5,163.25087 L86.5,37.2372735 L0.5,0.755233307 Z" id="Rectangle" stroke="#51B0EB" fill="#4A90E2"></path>
+                <path d="M101.5,0.755233307 L101.5,127.525655 L187.5,163.25087 L187.5,37.2372735 L101.5,0.755233307 Z" id="Rectangle-Copy" stroke="#62DFA9" fill="#50E381" transform="translate(144.500000, 82.000000) scale(-1, 1) rotate(360.000000) translate(-144.500000, -82.000000) "></path>
+                <ellipse id="Oval" fill="#2E2730" filter="url(#filter-1)" cx="94.5" cy="201" rx="42.5" ry="7"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>
