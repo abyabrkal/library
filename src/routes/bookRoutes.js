@@ -3,6 +3,8 @@ const { MongoClient, ObjectID } = require('mongodb');
 const debug = require('debug')('app:bookRoutes');
 
 const bookRouter = express.Router();
+const sql = require('mssql');
+//const debug = require('debug')('app:bookRoutes');
 
 function router(nav) {
 
