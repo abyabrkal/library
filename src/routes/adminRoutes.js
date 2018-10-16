@@ -4,6 +4,46 @@ const debug = require('debug')('app:adminRoutes');
 const adminRouter = express.Router();
 
 
+const books = [
+    {
+    title: 'War and Peace',
+    genre: 'Historical Fiction',
+    author: 'Lev Nikolayevich Tolstoy',
+    read: false,
+    },
+    {
+    title: 'Les Miserables',
+    genre: 'Historical Fiction',
+    author: 'Victor Hugo',
+    read: false,
+    },
+    {
+    title: 'Da Vinci Code',
+    genre: 'Suspense Thriller',
+    author: 'Dan Brown',
+    read: false,
+    },
+    {
+    title: 'Angels and Demons',
+    genre: 'Suspense Thriller',
+    author: 'Dan Brown',
+    read: false,
+    },
+    {
+    title: 'The Dark World',
+    genre: 'Fantasy',
+    author: 'Henry Kuttner',
+    read: false,
+    },
+    {
+    title: 'A Journey into the Centre of the Earth',
+    genre: 'Suspense Fiction',
+    author: 'Jules Verne',
+    read: false,
+    },
+];
+
+
 function router(nav){
     adminRouter.route('/')
         .get((req, res) => {
