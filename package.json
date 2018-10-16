@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/abyabrkal/library#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "bootstrap": "^4.1.3",
     "chalk": "^2.4.1",
     "debug": "2.6.6",
