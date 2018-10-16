@@ -7,12 +7,33 @@ const authRouter = express.Router();
 function router(){
     authRouter.route('/signUp')
         .post((req, res) => {
-            debug(req.body);
-            //create a user
-            req.login(req.body, () => {
-                res.redirect('/auth/profile');
-            })
-            //res.json(req.body);
+            const { username, password } = req.body;
+            const url = 'mongodb://localhost:27017';
+            const dbName = 'libraryName';
+
+            (async function addUser(){
+                let client;
+                try {
+                    client = await MongoClient.connect(url);
+                    debug('Connected to server for user');
+
+                    const db = client.db(dbName);
+                    const col = db.collection('users');
+                    const user = { username, password };
+
+                    // connectd to db and a new collection user and now insertOne
+                    const results = await col.insertOne(user);
+                    debug(results);
+
+                    req.login(results.ops[0], () => {
+                        res.redirect('/auth/profile');
+                    })
+
+                } catch(err) {
+                    debug(err.stack);
+                }
+            }())
+          
         });
 
     authRouter.route('/profile')
