@@ -21,7 +21,7 @@ function bookController(bookService, nav) {
                     'bookListView',
                     {
                         nav,
-                        title: 'Library',
+                        title: 'Books',
                         books
                     }
                 );
