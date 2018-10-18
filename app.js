@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ urlencoded: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({ secret: 'library' }));
 
@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 
 
 const nav = [
-  { link: '/books', title: 'Book' }, 
+  { link: '/books', title: 'Books' }, 
   { link: '/authors', title: 'Author' }
 ];
 
